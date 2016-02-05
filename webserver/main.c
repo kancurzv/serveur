@@ -1,7 +1,8 @@
 # include <stdio.h>
 # include <string.h>
+#include "socket.h"
 
-int main (int argc, char **argv){
+int main(int argc, char **argv){
 /* Arnold Robbins in the LJ of February ’95 , describing RCS */
 	if(argc > 1 && strcmp (argv [1] , " - advice") == 0){
 		printf("Don't Panic !\n");
@@ -9,13 +10,12 @@ int main (int argc, char **argv){
 	}
 	printf("Need an advice ?\n");
 
-	int socket_serveur;
-	socket_serveur = socket ( AF_INET , SOCK_STREAM , 0);
-	if(socket_serveur == -1){
-		perror ( " socket_serveur " );
-		/* traitement de l ’ erreur */
-	}
-/* Utilisation de la socket serveur */
+	int newServer = cree_serveur(8080);
+
+	
+
+	
+
 	return 0;
 }
 
