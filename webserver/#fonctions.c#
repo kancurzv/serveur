@@ -1,0 +1,12 @@
+
+
+
+int socket(int domain, int type, int protocol){
+
+  int domain = AF_INET;
+  int type = SOCK_STREAM;
+  int protocol = 0;
+
+
+
+}
