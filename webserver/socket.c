@@ -1,6 +1,9 @@
 # include <stdio.h>
 # include <string.h>
-
+#include <sys/types.h>          
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <unistd.h>
 
 int creer_serveur(int port){
 
@@ -14,7 +17,7 @@ int creer_serveur(int port){
 
 	struct sockaddr_in saddr ;
 	saddr . sin_family = AF_INET ; /* Socket ipv4 */
-	saddr . sin_port = htons (8080); /* Port d ’ écoute */
+	saddr . sin_port = htons (port); /* Port d ’ écoute */
 	saddr . sin_addr . s_addr = INADDR_ANY ; /* écoute sur toutes lesinterfaces*/
 
 	if(bind(socket_serveur,(struct sockaddr*)&saddr,sizeof(saddr)) == -1){
@@ -34,9 +37,9 @@ int creer_serveur(int port){
 		/* traitement d ’ erreur */
 	}
 	/* On peut maintenant dialoguer avec le client */
-	const char * message_bienvenue ="Bonjour , bienvenue sur mon serveur \ n";
+	const char*message_bienvenue="Bonjour,bienvenue sur mon serveur \n";
 	write(socket_client ,message_bienvenue,strlen(message_bienvenue));
 
 
-
+	return 0;
 }
