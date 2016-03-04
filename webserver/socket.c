@@ -1,9 +1,12 @@
-# include <stdio.h>
-# include <string.h>
+#include <stdio.h>
+#include <string.h>
 #include <sys/types.h>          
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <unistd.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <sys/wait.h>
 
 int creer_serveur(int port){
 
@@ -49,6 +52,29 @@ int creer_serveur(int port){
 
 	return 0;
 }
+
+
+void trait_signal(int sig){
+  printf("Signal : %d ok\n", sig);
+  int status;
+  waitpid(-1, &status, WUNTRACED);
+}
+
+
+void initialiser_signaux(void) {
+  struct sigaction sa;
+
+  sa.sa_handler = trait_signal;
+  sigemptyset(&sa.sa_mask);
+  sa.sa_flags = SA_RESTART;
+  if(sigaction(SIGCHLD, &sa, NULL) == -1){
+    perror("sigaction(SIGCHLD)");
+  }
+  if(signal(SIGPIPE, SIG_IGN) == SIG_ERR){
+    perror("signal");
+  }
+}
+
 
 
 
