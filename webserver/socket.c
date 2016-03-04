@@ -39,41 +39,35 @@ int creer_serveur(int port){
 		perror ( " listen socket_serveur " );
 		/* traitement d ’ erreur */
 	}
-
-	int socket_client ;
-	socket_client = accept(socket_serveur , NULL , NULL);
-	if(socket_client == -1){
-		perror(" accept ");
-		/* traitement d ’ erreur */
-	}
-	/* On peut maintenant dialoguer avec le client */
-	const char*message_bienvenue="Bonjour,bienvenue sur mon serveur \n";
-	write(socket_client ,message_bienvenue,strlen(message_bienvenue));
-
-	return 0;
+	return socket_serveur;
+	
 }
 
 
 void trait_signal(int sig){
-  printf("Signal : %d ok\n", sig);
-  int status;
-  waitpid(-1, &status, WUNTRACED);
+  	printf("Signal : %d ok\n", sig);
+  	int status;
+  	waitpid(-1, &status, WUNTRACED);
 }
 
 
 void initialiser_signaux(void) {
-  struct sigaction sa;
+  	struct sigaction sa;
 
-  sa.sa_handler = trait_signal;
-  sigemptyset(&sa.sa_mask);
-  sa.sa_flags = SA_RESTART;
-  if(sigaction(SIGCHLD, &sa, NULL) == -1){
-    perror("sigaction(SIGCHLD)");
-  }
-  if(signal(SIGPIPE, SIG_IGN) == SIG_ERR){
-    perror("signal");
-  }
+  	sa.sa_handler = trait_signal;
+  	sigemptyset(&sa.sa_mask);
+  	sa.sa_flags = SA_RESTART;
+  	if(sigaction(SIGCHLD, &sa, NULL) == -1){
+    		perror("sigaction(SIGCHLD)");
+  	}
+  	if(signal(SIGPIPE, SIG_IGN) == SIG_ERR){
+    		perror("signal");
+  	}
 }
+
+
+
+
 
 
 
