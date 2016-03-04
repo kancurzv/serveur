@@ -4,6 +4,8 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <sys/wait.h>
+#include <stdlib.h>
 
 
 int main()
@@ -38,9 +40,12 @@ int main()
 
          while (1)
          {
-            read(socket_client, message, 1023);
+            if (read(socket_client, message, 1023) == 0){
+            	exit(0);
+            }
             write(socket_client, message, strlen(message));
          }
+	return 0;
       }
       else
       {
