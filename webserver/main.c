@@ -40,10 +40,11 @@ int main()
 
          while (1)
          {
-            if (read(socket_client, message, 1023) == 0){
-            	exit(0);
-            }
-            write(socket_client, message, strlen(message));
+	   FILE * fich;
+	   fich = fdopen(socket_client, "w+");
+	   while (fgets(message, sizeof(message), fich) != NULL) {
+	     printf("<Serveur Web> %s", message);
+	   }
          }
 	return 0;
       }
