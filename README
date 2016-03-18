@@ -3,7 +3,7 @@ Kancurzewski Valentin
 
 -----------------------
 
-0/ le 'make' est à réaliser à la racine (dossier serveur)
+0/ le 'make' est à réaliser dans le dossier webserver
 
 1/ Se placer dans le dossier webserver
 2/ Lancer ./server sur un terminal
