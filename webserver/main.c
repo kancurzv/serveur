@@ -35,7 +35,23 @@ int main()
       int pid = fork();
       if (pid == 0)
       {
-         message_bienvenue = "Bienvenue sur notre serveur !";
+         message_bienvenue = "               \n \
+               (<$$$$$$>#####<::::::>)\n \
+            _/~~~~~~~~~~~~~~~~~~~~~~~~~\\ \n \
+          /~                             ~\\ \n \
+        .~                                 ~\\ \n \
+    ()\\/_____                           _____\\/() \n \
+   .-''      ~~~~~~~~~~~~~~~~~~~~~~~~~~~     ``-. \n \
+.-~     Created by Spinnewyn and Kancurzewski   ~-.\n \
+`~~/~~~~~~~~~~~~TTTTTTTTTTTTTTTTTTTT~~~~~~~~~~~~\\~~'\n \
+| | | #### #### || | | | [] | | | || #### #### | | |\n \
+;__\\|___________|++++++++++++++++++|___________|/__;\n \
+ (~~====___________________________________====~~~)\n \
+  \\------_____________[SERVEUR]____________-----/\n \
+     |      ||         ~~~~~~~~       ||      |\n \
+      \\_____/                          \\_____/\n\n        Sur notre serveur, la route est longue...\n";
+
+
          write(socket_client, message_bienvenue, strlen(message_bienvenue));
 
          while (1)
@@ -55,5 +71,4 @@ int main()
    }
    return 0;
 }
-
 
